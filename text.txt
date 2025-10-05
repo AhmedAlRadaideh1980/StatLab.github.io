@@ -1,0 +1,16 @@
+your-website/
+├── index.html
+├── about.html
+├── research.html
+├── services.html
+├── team.html
+├── contact.html
+├── careers.html
+├── apply.html
+├── surveys.html
+├── machine-learning.html
+├── data-analytics.html
+├── visualization.html
+├── statistical-methods.html
+└── static/
+    └── favicon.ico

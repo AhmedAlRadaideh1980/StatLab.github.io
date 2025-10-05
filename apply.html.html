@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply - DataFlask Lab</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .progress-bar {
+            height: 4px;
+            background-color: #3B82F6;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Bar -->
+    <div class="fixed w-full z-50 bg-dark text-white text-sm py-1 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-primary transition"><i data-feather="phone" class="w-4 h-4 mr-1"></i> +1 (234) 567-890</a>
+                <a href="mailto:info@dataflasklab.com" class="hover:text-primary transition"><i data-feather="mail" class="w-4 h-4 mr-1"></i> info@dataflasklab.com</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-primary transition"><i data-feather="twitter" class="w-4 h-4"></i></a>
+                <a href="#" class="hover:text-primary transition"><i data-feather="linkedin" class="w-4 h-4"></i></a>
+                <a href="#" class="hover:text-primary transition"><i data-feather="github" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-40 bg-white/80 backdrop-blur-md shadow-sm mt-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="flex items-center">
+                            <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
+                                <i data-feather="flask" class="text-white"></i>
+                            </div>
+                            <span class="ml-2 text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">DataFlask Lab</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-dark hover:text-primary font-medium transition">Home</a>
+                    <a href="about.html" class="text-dark hover:text-primary font-medium transition">About</a>
+                    <a href="research.html" class="text-dark hover:text-primary font-medium transition">Research</a>
+                    <a href="services.html" class="text-dark hover:text-primary font-medium transition">Services</a>
+                    <a href="team.html" class="text-dark hover:text-primary font-medium transition">Team</a>
+                    <a href="careers.html" class="text-primary font-medium">Careers</a>
+                    <a href="contact.html" class="text-dark hover:text-primary font-medium transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <!-- Progress Bar -->
+            <div class="progress-bar" id="progressBar"></div>
+            
+            <div class="p-8">
+                <h1 class="text-3xl font-bold" x-text="`Application for: ${new URLSearchParams(window.location.search).get('position') || 'Data Science Position'}`"></h1>
+                <p class="mt-2 text-gray-500">Complete the form below to apply for this position.</p>
+                
+                <form class="mt-8 space-y-6" x-data="{
+                    step: 1,
+                    totalSteps: 3,
+                    formData: {
+                        position: new URLSearchParams(window.location.search).get('position') || '',
+                        personal: {},
+                        experience: {},
+                        documents: {}
+                    },
+                    nextStep() {
+                        if (this.step < this.totalSteps) {
+                            this.step++;
+                            document.getElementById('progressBar').style.width = `${(this.step/this.totalSteps)*100}%`;
+                        }
+                    },
+                    prevStep() {
+                        if (this.step > 1) {
+                            this.step--;
+                            document.getElementById('progressBar').style.width = `${(this.step/this.totalSteps)*100}%`;
+                        }
+                    },
+                    submitForm() {
+                        // Simulate form submission
+                        document.getElementById('submitBtn').innerHTML = '<i data-feather=\"loader\" class=\"animate-spin\"></i> Processing...';
+                        feather.replace();
+                        
+                        setTimeout(() => {
+                            document.getElementById('formContainer').innerHTML = `
+                                <div class=\"text-center py-8\">
+                                    <i data-feather=\"check-circle\" class=\"w-16 h-16 text-green-500 mx-auto\"></i>
+                                    <h2 class=\"mt-4 text-2xl font-bold\">Application Submitted!</h2>
+                                    <p class=\"mt-2 text-gray-500\">We've received your application for \${this.formData.position}.</p>
+                                    <p class=\"mt-2 text-gray-500\">Our team will review your materials and get back to you within 2 weeks.</p>
+                                    <a href=\"careers.html\" class=\"mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-primary hover:bg-primary/90 transition\">
+                                        Back to Careers
+                                    </a>
+                                </div>
+                            `;
+                            feather.replace();
+                        }, 2000);
+                    }
+                }">
+                    <!-- Step 1: Personal Information -->
+                    <div x-show="step === 1" x-transition>
+                        <h2 class="text-xl font-semibold">Personal Information</h2>
+                        <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">First Name</label>
+                                <input type="text" x-model="formData.personal.firstName" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Last Name</label>
+                                <input type="text" x-model="formData.personal.lastName" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" x-model="formData.personal.email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Phone</label>
+                                <input type="tel" x-model="formData.personal.phone" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <label class="block text-sm font-medium text-gray-700">Cover Letter</label>
+                            <textarea rows="4" x-model="formData.personal.coverLetter" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary"></textarea>
+                        </div>
+                        <div class="mt-6 flex justify-end">
+                            <button type="button" @click="nextStep()" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition">
+                                Next: Experience
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Experience -->
+                    <div x-show="step === 2" x-transition>
+                        <h2 class="text-xl font-semibold">Professional Experience</h2>
+                        <div class="mt-6 space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Current Position</label>
+                                <input type="text" x-model="formData.experience.currentPosition" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Years of Experience</label>
+                                <select x-model="formData.experience.years" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                                    <option value="">Select</option>
+                                    <option value="0-2">0-2 years</option>
+                                    <option value="3-5">3-5 years</option>
+                                    <option value="6-10">6-10 years</option>
+                                    <option value="10+">10+ years</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Skills</label>
+                                <textarea rows="3" x-model="formData.experience.skills" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" placeholder="List your relevant skills separated by commas"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">LinkedIn Profile</label>
+                                <input type="url" x-model="formData.experience.linkedIn" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+                        </div>
+                        <div class="mt-6 flex justify-between">
+                            <button type="button" @click="prevStep()" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition">
+                                Back
+                            </button>
+                            <button type="button" @click="nextStep()" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition">
+                                Next: Documents
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Documents -->
+                    <div x-show="step === 3" x-transition id="formContainer">
+                        <h2 class="text-xl font-semibold">Application Documents</h2>
+                        <div class="mt-6 space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Resume/CV</label>
+                                <input type="file" @change="formData.documents.resume = $event.target.files[0]" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20">
+                                <p class="mt-1 text-sm text-gray-500">PDF, DOC or DOCX (Max. 5MB)</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Portfolio (Optional)</label>
+                                <input type="file" @change="formData.documents.portfolio = $event.target.files[0]" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20">
+                                <p class="mt-1 text-sm text-gray-500">PDF or URL to online portfolio</p>
+                            </div>
+                            <div>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary" required>
+                                    <span class="ml-2 text-sm text-gray-600">I agree to the <a href="#" class="text-primary hover:text-primary/80">privacy policy</a> and <a href="#" class="text-primary hover:text-primary/80">terms of service</a></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex justify-between">
+                            <button type="button" @click="prevStep()" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition">
+                                Back
+                            </button>
+                            <button type="button" id="submitBtn" @click="submitForm()" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition">
+                                Submit Application
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center">
+                        <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
+                            <i data-feather="flask" class="text-white"></i>
+                        </div>
+                        <span class="ml-2 text-xl font-bold">DataFlask Lab</span>
+                    </div>
+                    <p class="mt-4 text-gray-300">
+                        Advancing data science through innovative research, analytics, and collaboration.
+                    </p>
+                    <div class="mt-6 flex space-x-6">
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="github"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Data Science</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="machine-learning.html" class="text-gray-400 hover:text-white transition">Machine Learning</a></li>
+                        <li><a href="data-analytics.html" class="text-gray-400 hover:text-white transition">Data Analytics</a></li>
+                        <li><a href="visualization.html" class="text-gray-400 hover:text-white transition">Visualization</a></li>
+                        <li><a href="statistical-methods.html" class="text-gray-400 hover:text-white transition">Statistical Methods</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">About</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">Our Story</a></li>
+                        <li><a href="team.html" class="text-gray-400 hover:text-white transition">Team</a></li>
+                        <li><a href="careers.html" class="text-gray-400 hover:text-white transition">Careers</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-gray-400 text-sm">
+                    © 2023 DataFlask Lab. All rights reserved.
+                </p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataFlask Lab - Advanced Data Science Research</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        dark: '#1E293B',
+                        light: '#F8FAFC',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(16,185,129,0.1) 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-light text-dark">
+    <!-- Top Bar -->
+    <div class="fixed w-full z-50 bg-dark text-white text-sm py-1 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-primary transition"><i data-feather="phone" class="w-4 h-4 mr-1"></i> +1 (234) 567-890</a>
+                <a href="mailto:info@dataflasklab.com" class="hover:text-primary transition"><i data-feather="mail" class="w-4 h-4 mr-1"></i> info@dataflasklab.com</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-primary transition"><i data-feather="twitter" class="w-4 h-4"></i></a>
+                <a href="#" class="hover:text-primary transition"><i data-feather="linkedin" class="w-4 h-4"></i></a>
+                <a href="#" class="hover:text-primary transition"><i data-feather="github" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-40 bg-white/80 backdrop-blur-md shadow-sm mt-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
+                            <i data-feather="flask" class="text-white"></i>
+                        </div>
+                        <span class="ml-2 text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">DataFlask Lab</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-primary font-medium transition">Home</a>
+                    <a href="about.html" class="text-dark hover:text-primary font-medium transition">About</a>
+                    <a href="research.html" class="text-dark hover:text-primary font-medium transition">Research</a>
+                    <a href="services.html" class="text-dark hover:text-primary font-medium transition">Services</a>
+                    <a href="team.html" class="text-dark hover:text-primary font-medium transition">Team</a>
+                    <a href="contact.html" class="text-dark hover:text-primary font-medium transition">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-dark">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div id="hero" class="relative pt-24 pb-20 sm:pt-32 sm:pb-28 lg:pt-40 lg:pb-32 hero-gradient">
+        <div class="absolute inset-0 overflow-hidden">
+            <div id="vanta-globe" class="w-full h-full"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
+                    <h1 class="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
+                        <span class="block">Advanced</span>
+                        <span class="block text-primary">Data Science Research</span>
+                    </h1>
+                    <p class="mt-3 text-lg sm:mt-5 sm:text-xl sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                        At DataFlask Lab, we leverage cutting-edge analytics and AI to solve complex problems through data-driven approaches.
+                    </p>
+                    <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
+                        <div class="flex flex-col sm:flex-row sm:justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="research.html" class="px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 md:py-4 md:text-lg md:px-10 transition">
+                                Our Research
+                            </a>
+                            <a href="team.html" class="px-8 py-3 border border-transparent text-base font-medium rounded-lg text-primary bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 transition">
+                                Meet the Team
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
+                    <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md glass-effect p-2">
+                        <img class="w-full rounded-lg" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Data science visualization">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Research Areas -->
+    <div id="research-areas" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                    Our Core Services
+                </h2>
+                <p class="mt-4 max-w-2xl text-lg mx-auto text-gray-500">
+                    Explore our data science solutions organized by workflow
+                </p>
+                <div class="mt-4 flex items-center justify-center">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
+                        <i data-feather="info" class="w-4 h-4 mr-1"></i>
+                        Hover over cards for details
+                    </span>
+                </div>
+            </div>
+
+            <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+                <!-- Card 1 -->
+                <div class="card-hover bg-white rounded-xl shadow-md overflow-hidden transition duration-300 ease-in-out">
+                    <div class="h-48 bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center relative group">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Machine Learning" class="h-full w-full object-cover opacity-80">
+                        <i data-feather="cpu" class="h-16 w-16 text-primary absolute"></i>
+                        <div class="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
+                            <p class="text-white text-sm">Predictive modeling and algorithm development using statistical methods</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="uppercase tracking-wide text-sm font-semibold text-primary">Machine Learning</div>
+                        <p class="mt-2 text-gray-500">Developing predictive models and algorithms that learn from data patterns.</p>
+                        <a href="machine-learning.html" class="mt-4 text-sm text-primary hover:text-primary/80 transition flex items-center">
+                            Learn more <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card-hover bg-white rounded-xl shadow-md overflow-hidden transition duration-300 ease-in-out">
+                    <div class="h-48 bg-gradient-to-r from-secondary/20 to-primary/20 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Data Analytics" class="h-full w-full object-cover opacity-80">
+                        <i data-feather="activity" class="h-16 w-16 text-secondary absolute"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="uppercase tracking-wide text-sm font-semibold text-secondary">Data Analytics</div>
+                        <p class="mt-2 text-gray-500">Extracting insights from complex datasets to drive decision-making processes.</p>
+                        <a href="data-analytics.html" class="mt-4 text-sm text-secondary hover:text-secondary/80 transition flex items-center">
+                            Learn more <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="card-hover bg-white rounded-xl shadow-md overflow-hidden transition duration-300 ease-in-out">
+                    <div class="h-48 bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Data Visualization" class="h-full w-full object-cover opacity-80">
+                        <i data-feather="eye" class="h-16 w-16 text-primary absolute"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="uppercase tracking-wide text-sm font-semibold text-primary">Data Visualization</div>
+                        <p class="mt-2 text-gray-500">Transforming complex data into intuitive visual representations and dashboards.</p>
+                        <a href="visualization.html" class="mt-4 text-sm text-primary hover:text-primary/80 transition flex items-center">
+                            Learn more <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="card-hover bg-white rounded-xl shadow-md overflow-hidden transition duration-300 ease-in-out">
+                    <div class="h-48 bg-gradient-to-r from-secondary/20 to-primary/20 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Statistical Modeling" class="h-full w-full object-cover opacity-80">
+                        <i data-feather="trending-up" class="h-16 w-16 text-secondary absolute"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="uppercase tracking-wide text-sm font-semibold text-secondary">Statistical Modeling</div>
+                        <p class="mt-2 text-gray-500">Building mathematical models to analyze relationships in large datasets.</p>
+                        <a href="statistical-methods.html" class="mt-4 text-sm text-secondary hover:text-secondary/80 transition flex items-center">
+                            Learn more <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Research -->
+    <div id="featured-research" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                    Featured Research
+                </h2>
+                <p class="mt-4 max-w-2xl text-lg text-gray-500 lg:mx-auto">
+                    Breakthrough discoveries that are shaping the future of science
+                </p>
+            </div>
+            <div class="mt-12">
+                <div class="space-y-12">
+                    <!-- Research 1 -->
+                    <div class="flex flex-col md:flex-row gap-8 bg-white rounded-xl shadow-md p-6">
+                        <div class="md:w-1/3">
+                            <img class="rounded-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Health research">
+                        </div>
+                        <div class="md:w-2/3">
+                            <h3 class="text-2xl font-bold text-dark">Validation of Diabetes Literacy Tools in Arabic Context</h3>
+                            <div class="mt-2 flex items-center space-x-4">
+                                <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-primary/10 text-primary">
+                                    Healthcare
+                                </span>
+                                <span class="text-sm text-gray-500">Published: 2023</span>
+                            </div>
+                            <p class="mt-4 text-gray-600">
+                                Our team validated Arabic versions of diabetes literacy assessment tools, improving care for Arabic-speaking populations. Published in The Science of Diabetes Self Management and Care.
+                            </p>
+                            <div class="mt-6 flex items-center">
+                                <div class="flex-shrink-0">
+                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Researcher">
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-dark">Dr. Hasan S.</p>
+                                    <p class="text-sm text-gray-500">Lead Researcher</p>
+                                </div>
+                                <div class="ml-auto">
+                                    <a href="https://doi.org/10.1177/26350106231207349" target="_blank" class="text-sm font-medium text-primary hover:text-primary/80 transition">Read Paper →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Research 2 -->
+                    <div class="flex flex-col md:flex-row gap-8 bg-white rounded-xl shadow-md p-6">
+                        <div class="md:w-1/3">
+                            <img class="rounded-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Fluid dynamics">
+                        </div>
+                        <div class="md:w-2/3">
+                            <h3 class="text-2xl font-bold text-dark">Heat Transfer in MHD Williamson Micropolar Fluid Flow</h3>
+                            <div class="mt-2 flex items-center space-x-4">
+                                <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-secondary/10 text-secondary">
+                                    Physics
+                                </span>
+                                <span class="text-sm text-gray-500">Published: 2025</span>
+                            </div>
+                            <p class="mt-4 text-gray-600">
+                                Advanced research examining heat and mass transfer in complex fluid flows, published in Journal of Advanced Research in Numerical Heat Transfer. Important for industrial and engineering applications.
+                            </p>
+                            <div class="mt-6 flex items-center">
+                                <div class="flex-shrink-0">
+                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Researcher">
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-dark">Dr. Ahmed B.</p>
+                                    <p class="text-sm text-gray-500">Lead Researcher</p>
+                                </div>
+                                <div class="ml-auto">
+                                    <a href="https://doi.org/10.37934/arnht.33.3.3047" target="_blank" class="text-sm font-medium text-primary hover:text-primary/80 transition">Read Paper →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Research Cards -->
+            <div class="grid gap-8 md:grid-cols-2 mt-8">
+                <!-- Research 3 -->
+                <div class="flex flex-col md:flex-row gap-8 bg-white rounded-xl shadow-md p-6">
+                    <div class="md:w-1/3">
+                        <img class="rounded-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Education research">
+                    </div>
+                    <div class="md:w-2/3">
+                        <h3 class="text-xl font-bold text-dark">Managing University E-Learning Environments</h3>
+                        <div class="mt-2 flex items-center space-x-4">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                                Education
+                            </span>
+                            <span class="text-xs text-gray-500">2022</span>
+                        </div>
+                        <p class="mt-2 text-sm text-gray-600">
+                            Comprehensive study on e-learning environments and academic achievement in the UAE, published in PLOS ONE.
+                        </p>
+                        <div class="mt-4 flex items-center">
+                            <div class="ml-auto">
+                                <a href="https://doi.org/10.1371/journal.pone.0268338" target="_blank" class="text-sm font-medium text-primary hover:text-primary/80 transition">Read Paper →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research 4 -->
+                <div class="flex flex-col md:flex-row gap-8 bg-white rounded-xl shadow-md p-6">
+                    <div class="md:w-1/3">
+                        <img class="rounded-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Software research">
+                    </div>
+                    <div class="md:w-2/3">
+                        <h3 class="text-xl font-bold text-dark">Software Defect Prediction Using Ensemble Classification</h3>
+                        <div class="mt-2 flex items-center space-x-4">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-secondary/10 text-secondary">
+                                Computer Science
+                            </span>
+                            <span class="text-xs text-gray-500">2020</span>
+                        </div>
+                        <p class="mt-2 text-sm text-gray-600">
+                            Innovative approach to software defect prediction using heterogeneous ensemble classification, published in Applied Sciences.
+                        </p>
+                        <div class="mt-4 flex items-center">
+                            <div class="ml-auto">
+                                <a href="https://doi.org/10.3390/app10051745" target="_blank" class="text-sm font-medium text-primary hover:text-primary/80 transition">Read Paper →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <a href="research.html" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-primary hover:bg-primary/90 transition">
+                    View All Research
+                    <i data-feather="arrow-right" class="ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div id="team-section" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                    Our Team
+                </h2>
+                <p class="mt-4 max-w-2xl text-lg mx-auto text-gray-500">
+                    Brilliant minds working together to advance scientific knowledge
+                </p>
+            </div>
+            <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Team Member 1 -->
+                <div class="flex flex-col items-center text-center">
+                    <img class="h-40 w-40 rounded-full object-cover" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Data science team member">
+                    <h3 class="mt-4 text-xl font-bold text-dark">Dr. Ahmed AlRadaideh</h3>
+                    <p class="text-secondary font-medium">Team Director</p>
+                    <p class="mt-2 text-gray-500">Data Science Leader with 10+ years of research experience</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition">
+                            <i data-feather="mail"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="flex flex-col items-center text-center">
+                    <img class="h-40 w-40 rounded-full object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="AI researcher">
+                    <h3 class="mt-4 text-xl font-bold text-dark">Dr. Jamal Williams</h3>
+                    <p class="text-secondary font-medium">Lead AI Researcher</p>
+                    <p class="mt-2 text-gray-500">Machine Learning pioneer and neural networks expert</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition">
+                            <i data-feather="mail"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="flex flex-col items-center text-center">
+                    <img class="h-40 w-40 rounded-full object-cover" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Data engineer">
+                    <h3 class="mt-4 text-xl font-bold text-dark">Dr. Priya Singh</h3>
+                    <p class="text-secondary font-medium">Head of Data Engineering</p>
+                    <p class="mt-2 text-gray-500">Specialist in data pipelines and large-scale analytics</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition">
+                            <i data-feather="mail"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <a href="team.html" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-primary bg-primary/10 hover:bg-primary/20 transition">
+                    Meet the Full Team
+                    <i data-feather="arrow-right" class="ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-primary py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
+                <div>
+                    <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                        Join Our Data Science Community
+                    </h2>
+                    <p class="mt-3 max-w-3xl text-lg text-primary-100">
+                        Participate in our research surveys or join our team of data scientists. We're looking for talented individuals passionate about analytics, machine learning, and data visualization.
+                    </p>
+                    <div class="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="surveys.html" class="flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-primary bg-white hover:bg-gray-50 transition">
+                            Take Our Survey
+                            <i data-feather="arrow-right" class="ml-2"></i>
+                        </a>
+                        <a href="careers.html" class="flex items-center justify-center px-6 py-3 border border-white text-base font-medium rounded-lg text-white hover:bg-white/10 transition">
+                            Research Opportunities
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-12 lg:mt-0">
+                    <img class="w-full rounded-lg shadow-xl" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Data science team">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center">
+                        <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
+                            <i data-feather="flask" class="text-white"></i>
+                        </div>
+                        <span class="ml-2 text-xl font-bold">DataFlask Lab</span>
+                    </div>
+                    <p class="mt-4 text-gray-300">
+                        Advancing data science through innovative research, analytics, and collaboration.
+                    </p>
+                    <div class="mt-6 flex space-x-6">
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="github"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Data Science</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="machine-learning.html" class="text-gray-400 hover:text-white transition">Machine Learning</a></li>
+                        <li><a href="data-analytics.html" class="text-gray-400 hover:text-white transition">Data Analytics</a></li>
+                        <li><a href="visualization.html" class="text-gray-400 hover:text-white transition">Visualization</a></li>
+                        <li><a href="statistical-methods.html" class="text-gray-400 hover:text-white transition">Statistical Methods</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">About</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">Our Story</a></li>
+                        <li><a href="team.html" class="text-gray-400 hover:text-white transition">Team</a></li>
+                        <li><a href="careers.html" class="text-gray-400 hover:text-white transition">Careers</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-gray-400 text-sm">
+                    © 2023 DataFlask Lab. All rights reserved.
+                </p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script>
+        // Initialize Vanta.js with network visualization
+        document.addEventListener('DOMContentLoaded', function() {
+            VANTA.GLOBE({
+                el: "#vanta-globe",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: '#3B82F6',
+                backgroundColor: '#F8FAFC',
+                points: 12.00,
+                maxDistance: 20.00,
+                spacing: 15.00
+            });
+
+            // Initialize feather icons
+            feather.replace();
+        });
+    </script>
+</body>
+</html>

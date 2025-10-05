@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - DataFlask Lab</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        dark: '#1E293B',
+                        light: '#F8FAFC',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .research-card {
+            transition: all 0.3s ease;
+        }
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-light text-dark">
+    <!-- Top Bar -->
+    <div class="fixed w-full z-50 bg-dark text-white text-sm py-1 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-primary transition"><i data-feather="phone" class="w-4 h-4 mr-1"></i> +1 (234) 567-890</a>
+                <a href="mailto:info@dataflasklab.com" class="hover:text-primary transition"><i data-feather="mail" class="w-4 h-4 mr-1"></i> info@dataflasklab.com</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-primary transition"><i data-feather="twitter" class="w-4 h-4"></i></a>
+                <a href="#" class="hover:text-primary transition"><i data-feather="linkedin" class="w-4 h-4"></i></a>
+                <a href="#" class="hover:text-primary transition"><i data-feather="github" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-40 bg-white/80 backdrop-blur-md shadow-sm mt-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="flex items-center">
+                            <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
+                                <i data-feather="flask" class="text-white"></i>
+                            </div>
+                            <span class="ml-2 text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">DataFlask Lab</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-dark hover:text-primary font-medium transition">Home</a>
+                    <a href="about.html" class="text-dark hover:text-primary font-medium transition">About</a>
+                    <a href="research.html" class="text-primary font-medium">Research</a>
+                    <a href="services.html" class="text-dark hover:text-primary font-medium transition">Services</a>
+                    <a href="team.html" class="text-dark hover:text-primary font-medium transition">Team</a>
+                    <a href="contact.html" class="text-dark hover:text-primary font-medium transition">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-dark">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-32 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">Research Publications</h1>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    Our latest scientific contributions to the field of data science
+                </p>
+            </div>
+
+            <!-- Research Filter -->
+            <div class="mt-12 flex flex-wrap justify-center gap-4">
+                <button class="px-4 py-2 rounded-full bg-primary text-white">All</button>
+                <button class="px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-50">Machine Learning</button>
+                <button class="px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-50">Data Analytics</button>
+                <button class="px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-50">Visualization</button>
+                <button class="px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-50">Statistical Methods</button>
+            </div>
+
+            <!-- Research Grid -->
+            <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Publication 1 -->
+                <div class="research-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-primary/10 to-secondary/10 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Deep Learning Research" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                                Machine Learning
+                            </span>
+                            <span class="text-xs text-gray-500">Jun 2023</span>
+                        </div>
+                        <h3 class="mt-2 text-xl font-bold">Advanced Neural Architectures for Time Series Prediction</h3>
+                        <p class="mt-2 text-gray-600">Introducing novel deep learning models that achieve state-of-the-art performance on complex time series datasets.</p>
+                        <div class="mt-4 flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Researcher">
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-dark">Dr. Elena Petrova</p>
+                            </div>
+                            <div class="ml-auto">
+                                <a href="https://arxiv.org/abs/2106.10165" target="_blank" class="text-sm font-medium text-primary hover:text-primary/80 transition">Read →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publication 2 -->
+                <div class="research-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-secondary/10 to-primary/10 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Data Analysis Research" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary/10 text-secondary">
+                                Analytics
+                            </span>
+                            <span class="text-xs text-gray-500">May 2023</span>
+                        </div>
+                        <h3 class="mt-2 text-xl font-bold">Survey Data Quality Assessment Framework</h3>
+                        <p class="mt-2 text-gray-600">A comprehensive methodology for evaluating and improving the quality of survey responses from platforms like SurveyMonkey.</p>
+                        <div class="mt-4 flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Researcher">
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-dark">Dr. Michael Rodriguez</p>
+                            </div>
+                            <div class="ml-auto">
+                                <a href="https://arxiv.org/abs/2007.10799" target="_blank" class="text-sm font-medium text-primary hover:text-primary/80 transition">Read →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publication 3 -->
+                <div class="research-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-primary/10 to-secondary/10 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Visualization Research" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                                Visualization
+                            </span>
+                            <span class="text-xs text-gray-500">Apr 2023</span>
+                        </div>
+                        <h3 class="mt-2 text-xl font-bold">Interactive Visualization for High-Dimensional Data</h3>
+                        <p class="mt-2 text-gray-600">New techniques for exploring and understanding complex, high-dimensional datasets through interactive visual interfaces.</p>
+                        <div class="mt-4 flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Researcher">
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-dark">Dr. James Wilson</p>
+                            </div>
+                            <div class="ml-auto">
+                                <a href="https://arxiv.org/abs/1908.07919" target="_blank" class="text-sm font-medium text-primary hover:text-primary/80 transition">Read →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publication 4 -->
+                <div class="research-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-secondary/10 to-primary/10 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Statistical Research" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary/10 text-secondary">
+                                Statistics
+                            </span>
+                            <span class="text-xs text-gray-500">Mar 2023</span>
+                        </div>
+                        <h3 class="mt-2 text-xl font-bold">Robust Statistical Methods for Small Samples</h3>
+                        <p class="mt-2 text-gray-600">Innovative approaches to statistical inference that maintain validity even with limited sample sizes.</p>
+                        <div class="mt-4 flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Researcher">
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-dark">Dr. Priya Singh</p>
+                            </div>
+                            <div class="ml-auto">
+                                <a href="https://arxiv.org/abs/1805.09570" target="_blank" class="text-sm font-medium text-primary hover:text-primary/80 transition">Read →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publication 5 -->
+                <div class="research-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-primary/10 to-secondary/10 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1556751175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="AI Research" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                                AI Ethics
+                            </span>
+                            <span class="text-xs text-gray-500">Feb 2023</span>
+                        </div>
+                        <h3 class="mt-2 text-xl font-bold">Ethical Frameworks for AI Deployment</h3>
+                        <p class="mt-2 text-gray-600">Practical guidelines for implementing ethical AI systems in real-world applications across different industries.</p>
+                        <div class="mt-4 flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Researcher">
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-dark">Dr. Ahmed AlRadaideh</p>
+                            </div>
+                            <div class="ml-auto">
+                                <a href="https://arxiv.org/abs/2001.09777" target="_blank" class="text-sm font-medium text-primary hover:text-primary/80 transition">Read →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publication 6 -->
+                <div class="research-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-secondary/10 to-primary/10 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Health Research" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary/10 text-secondary">
+                                Health Tech
+                            </span>
+                            <span class="text-xs text-gray-500">Jan 2023</span>
+                        </div>
+                        <h3 class="mt-2 text-xl font-bold">Predictive Models for Early Disease Detection</h3>
+                        <p class="mt-2 text-gray-600">Machine learning approaches to identify early indicators of chronic diseases from electronic health records.</p>
+                        <div class="mt-4 flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Researcher">
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-dark">Dr. Sarah Chen</p>
+                            </div>
+                            <div class="ml-auto">
+                                <a href="https://arxiv.org/abs/1907.00490" target="_blank" class="text-sm font-medium text-primary hover:text-primary/80 transition">Read →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="mt-12 flex justify-center">
+                <nav class="flex items-center space-x-1">
+                    <a href="#" class="px-4 py-2 border rounded-lg text-primary border-primary bg-primary/10">1</a>
+                    <a href="#" class="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-50">2</a>
+                    <a href="#" class="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-50">3</a>
+                    <a href="#" class="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-50">Next →</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center">
+                        <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
+                            <i data-feather="flask" class="text-white"></i>
+                        </div>
+                        <span class="ml-2 text-xl font-bold">DataFlask Lab</span>
+                    </div>
+                    <p class="mt-4 text-gray-300">
+                        Advancing data science through innovative research, analytics, and collaboration.
+                    </p>
+                    <div class="mt-6 flex space-x-6">
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="github"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">
+                            <i data-feather="youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Data Science</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="machine-learning.html" class="text-gray-400 hover:text-white transition">Machine Learning</a></li>
+                        <li><a href="data-analytics.html" class="text-gray-400 hover:text-white transition">Data Analytics</a></li>
+                        <li><a href="visualization.html" class="text-gray-400 hover:text-white transition">Visualization</a></li>
+                        <li><a href="statistical-methods.html" class="text-gray-400 hover:text-white transition">Statistical Methods</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">About</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">Our Story</a></li>
+                        <li><a href="team.html" class="text-gray-400 hover:text-white transition">Team</a></li>
+                        <li><a href="careers.html" class="text-gray-400 hover:text-white transition">Careers</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-gray-400 text-sm">
+                    © 2023 DataFlask Lab. All rights reserved.
+                </p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
